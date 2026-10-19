@@ -59,13 +59,6 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 
-/*
- * PALET BARU (teal) - semua pasangan teks/latar dipilih agar kontras >= 4.5:1
- *  - Ink (#10231F) di atas putih / PageBackground  -> sangat tinggi (> 14:1)
- *  - MutedInk (#42565A) di atas putih              -> sekitar 7:1
- *  - Putih di atas BrandTeal (#00695C)             -> sekitar 6.5:1
- *  - Aksen gelap di atas container pastel          -> > 5:1
- */
 private val BrandTeal = Color(0xFF00695C)
 private val BrandMint = Color(0xFFD3F1EA)
 private val PageBackground = Color(0xFFF2F8F6)
@@ -86,7 +79,6 @@ private val AccentOrange = Color(0xFF8A4B00)
 private val AccentPink = Color(0xFF8E244D)
 private val AccentIndigo = Color(0xFF4A3A9C)
 
-/** Ukuran minimum kartu pada grid adaptif (poin 3). Coba juga 220.dp untuk membandingkan. */
 private val GridMinSize = 260.dp
 
 class MainActivity : ComponentActivity() {
@@ -117,11 +109,6 @@ private fun KampusKuTheme(content: @Composable () -> Unit) {
     MaterialTheme(colorScheme = colors, content = content)
 }
 
-/**
- * Satu halaman dashboard yang mengubah penempatan elemen berdasarkan
- * lebar ruang aplikasi yang tersedia, bukan semata-mata tipe perangkat.
- * Compact < 600 dp, Medium 600-839 dp, Expanded >= 840 dp.
- */
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 private fun AdaptiveDashboard() {
@@ -183,7 +170,6 @@ private fun AdaptiveDashboard() {
     }
 }
 
-/** Area navigasi hanya ilustrasi visual pada pertemuan layout. Navigasi aktif dibahas pada pertemuan berikutnya. */
 @Composable
 private fun DashboardSideRail() {
     Column(
@@ -357,7 +343,6 @@ private fun MetricCard(data: MetricData) {
                     }
                 }
                 Spacer(Modifier.width(10.dp))
-                // weight(1f) supaya label panjang membungkus ke baris baru, bukan terpotong
                 Text(
                     data.label,
                     style = MaterialTheme.typography.titleSmall,
@@ -399,7 +384,6 @@ private fun CourseCard(course: CourseData) {
                         Icon(course.icon, contentDescription = null, tint = course.accent, modifier = Modifier.size(26.dp))
                     }
                 }
-                // Poin 4: tanpa maxLines/ellipsis, teks panjang otomatis turun ke baris berikutnya
                 Column(modifier = Modifier.weight(1f)) {
                     Text(course.title, style = MaterialTheme.typography.titleMedium, fontWeight = FontWeight.Bold, color = Ink)
                     Spacer(Modifier.height(4.dp))
@@ -425,7 +409,6 @@ private fun CourseCard(course: CourseData) {
     }
 }
 
-// Poin 5: uji pada ponsel, layar sedang, dan tablet/layar lebar
 @Preview(name = "Ponsel · Compact", showBackground = true, widthDp = 393, heightDp = 850)
 @Composable
 private fun PhonePreview() {
